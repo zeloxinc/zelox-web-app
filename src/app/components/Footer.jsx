@@ -42,7 +42,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-6 text-xs text-neutral-500 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 border-t border-neutral-200 pt-6 text-xs text-neutral-500 sm:flex-row">
           <div>© {new Date().getFullYear()} ZeloxIndustries. All rights reserved.</div>
           <div className="flex items-center gap-3">
             <a href="#" className="hover:underline">Privacy</a>

@@ -5,7 +5,7 @@ import Anchor from "./ui/Anchor";
 
 function Hero() {
   return (
-    <div className="relative overflow-hidden border-b border-neutral-200">
+    <div className="h-max relative overflow-hidden border-b border-neutral-200">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.06),rgba(0,0,0,0)_60%)]" />
       <Section className="py-20 lg:py-28">
         <div className="flex flex-col items-start gap-6">
