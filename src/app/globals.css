@@ -2,4 +2,4 @@
 
 /* optional nicer font */
 :root { color-scheme: light; }
-html,body,#root { height: 100%; }
+html,body,#root { height: 100vh; }
