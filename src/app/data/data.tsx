@@ -12,6 +12,12 @@ import {
   FaGithub,
   FaWhatsapp,
   FaFacebook,
+  FaBox,
+  FaTags,
+  FaCashRegister,
+  FaCloudUploadAlt,
+  FaWifi,
+  FaTrashAlt
 } from "react-icons/fa";
 import { ReactNode } from "react";
 
@@ -50,19 +56,21 @@ export const products: Product[] = [
     image: images[0],
   },
   {
-    name: "Zelox Sales KeepUp",
-    description:
-      "A powerful React Native App for sales tracking, designed to help businesses manage leads, track performance, and gain insights on the go. Works seamlessly online or offline across all devices.",
-    features: [
-      { icon: <FaUsers />, text: "Lead Management: Organize and track leads with ease." },
-      { icon: <FaChartBar />, text: "Real-Time Analytics: Monitor sales performance with dynamic dashboards." },
-      { icon: <FaSync />, text: "Offline Functionality: Access and update data without an internet connection." },
-      { icon: <FaMobileAlt />, text: "Cross-Device Compatibility: Use on mobile, tablet, or desktop." },
-    ],
-    pricing: "Contact us for pricing or to schedule a free demo.",
-    link: "https://zelshop.vercel.app/",
-    image: images[1],
-  },
+  name: "ZelShop",
+  description:
+    "An offline-first sales management app built with React + Supabase + IndexedDB. Perfect for shopkeepers and small businesses to manage products, track variants, log sales, and sync data seamlessly when online.",
+  features: [
+    { icon: <FaBox />, text: "Product Management: Add, edit, and organize your product catalog." },
+    { icon: <FaTags />, text: "Variant Tracking: Keep detailed records of product variants like size, color, or type." },
+    { icon: <FaCashRegister />, text: "Sales Logging: Record daily sales quickly and accurately." },
+    { icon: <FaCloudUploadAlt />, text: "Sync with Supabase: Automatic two-way sync when connected." },
+    { icon: <FaWifi />, text: "Offline Mode: Works fully offline and syncs later without losing data." },
+  ],
+  pricing: "Free for early users. Contact us for enterprise features and premium support.",
+  link: "https://shop.zelox.space/",
+  image: images[1],
+}
+
 ];
 
 export interface Testimonial {
@@ -107,7 +115,7 @@ export interface SocialLink {
 
 export const socialLinks: SocialLink[] = [
   { name: "Twitter", href: "https://x.com/zeloxIndustries", icon: <FaTwitter className="h-6 w-6" /> },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/zelox-industries-54124b378/", icon: <FaLinkedin className="h-6 w-6" /> },
+  { name: "`LinkedIn`", href: "https://www.linkedin.com/in/zelox-industries-54124b378/", icon: <FaLinkedin className="h-6 w-6" /> },
   { name: "GitHub", href: "https://github.com/zeloxinc", icon: <FaGithub className="h-6 w-6" /> },
   { name: "WhatsApp", href: "https://wa.me/+254112099003", icon: <FaWhatsapp className="h-6 w-6" /> },
   { name: "Facebook", href: "https://www.instagram.com/zelox_industries/", icon: <FaFacebook className="h-6 w-6" /> },

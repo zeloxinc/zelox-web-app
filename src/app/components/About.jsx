@@ -1,11 +1,21 @@
+"use client";
+
 import { FaArrowRight } from "react-icons/fa";
 import Section from "./ui/Section";
 import Anchor from "./ui/Anchor";
 import Card from "./ui/Card";
+import { useState, useContext, createContext } from "react";
 
-function About() {
+// If you want to avoid prop drilling, create a context (optional)
+// Or just pass setActiveSection as prop — your choice.
+
+function About({ setActiveSection }) {
+  const handleViewProducts = () => {
+    setActiveSection("products"); // Switches to Shop section
+  };
+
   return (
-    <Section id="about" className="py-16 lg:py-20">
+    <Section id="about" className="py-16 lg:py-20 mt-10">
       <div className="grid gap-10 lg:grid-cols-2">
         {/* Left column: Company story */}
         <div>
@@ -60,12 +70,12 @@ function About() {
             <Anchor href="https://wa.me/+254112099003">
               Book a Demo <FaArrowRight />
             </Anchor>
-            <a
-              href="#shop"
-              className="inline-flex items-center gap-2 rounded-xl border border-neutral-300 px-4 py-2 text-sm text-neutral-800 hover:bg-neutral-50"
+            <button
+              onClick={handleViewProducts}
+              className="inline-flex items-center gap-2 rounded-xl border border-neutral-300 px-4 py-2 text-sm text-neutral-800 hover:bg-neutral-50 transition-colors"
             >
               View Products
-            </a>
+            </button>
           </div>
         </Card>
       </div>

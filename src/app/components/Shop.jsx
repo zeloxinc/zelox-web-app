@@ -1,20 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
+import { useState } from "react";
+import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Section from "../components/ui/Section";
 import Pill from "./ui/Pill";
 import Anchor from "../components/ui/Anchor";
 import { products } from "../data/data";
 import Card from "../components/ui/Card";
 
-function Shop() {
+function Shop({ setActiveSection }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const currentProduct = products[activeIndex];
+
+  const next = () => {
+    setActiveIndex((prev) => (prev + 1) % products.length);
+  };
+
+  const prev = () => {
+    setActiveIndex((prev) => (prev - 1 + products.length) % products.length);
+  };
+
   return (
-    <Section id="shop" className="py-12 sm:py-16 lg:py-20">
+    <Section id="shop" className="py-12 sm:py-16 lg:py-24">
       {/* Header */}
-      <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 className="text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
+      <div className="mb-8 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between px-4 sm:px-0">
+        <div className="text-center sm:text-left">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
             Products
           </h2>
           <p className="mt-1 text-sm text-neutral-600 sm:text-base">
@@ -22,67 +33,93 @@ function Shop() {
           </p>
         </div>
 
-        {/* Pills hidden on very small screens */}
-        <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:gap-2 sm:self-end">
+        {/* Pills */}
+        <div className="flex justify-center sm:justify-end flex-wrap gap-2">
           <Pill>#ffffff</Pill>
           <Pill>#000000</Pill>
           <Pill>grey</Pill>
         </div>
       </div>
 
-      {/* Products Grid */}
-      <div className="grid gap-6 sm:grid-cols-2">
-        {products.map((p) => (
-          <motion.div
-            key={p.name}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <Card className="overflow-hidden">
-              {/* Image */}
-              <div className="aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden bg-neutral-100">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="h-full w-full object-cover"
-                />
+      {/* Product Showcase — Full width, centered */}
+      <div className="relative max-w-7xl mx-auto px-4">
+        {/* Navigation Arrows (Desktop) */}
+        <button
+          onClick={prev}
+          className="hidden lg:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-md border hover:bg-gray-50 transition z-10"
+          aria-label="Previous product"
+        >
+          <FaChevronLeft />
+        </button>
+
+        <button
+          onClick={next}
+          className="hidden lg:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-md border hover:bg-gray-50 transition z-10"
+          aria-label="Next product"
+        >
+          <FaChevronRight />
+        </button>
+
+        {/* Product Card — Responsive Split Layout */}
+        <Card className="overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex flex-col lg:flex-row lg:items-center">
+            {/* Content — Left on Desktop, Top on Mobile */}
+            <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:pr-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3">{currentProduct.name}</h3>
+              <p className="text-sm text-neutral-700 leading-relaxed mb-5 sm:text-base">
+                {currentProduct.description}
+              </p>
+
+              <ul className="space-y-3 mb-6">
+                {currentProduct.features.map((f, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-1 flex-shrink-0 inline-flex h-6 w-6 items-center justify-center rounded-md bg-black text-white">
+                      {f.icon}
+                    </span>
+                    <span className="text-sm text-neutral-800">{f.text}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Anchor
+                  href={currentProduct.link.trim()}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center justify-center gap-2 px-5 py-3 text-center bg-black text-white rounded-lg hover:bg-gray-800 transition"
+                >
+                  Learn More <FaArrowRight />
+                </Anchor>
+                <span className="text-center text-xs text-neutral-600 pt-2 sm:pt-0">
+                  {currentProduct.pricing}
+                </span>
               </div>
+            </div>
 
-              {/* Content */}
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg font-semibold sm:text-xl">{p.name}</h3>
-                <p className="mt-2 text-sm text-neutral-600 sm:text-base">
-                  {p.description}
-                </p>
+            {/* Image — Right on Desktop, Below on Mobile */}
+            <div className="w-full lg:w-1/2 aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:h-full relative bg-neutral-100 overflow-hidden">
+              <img
+                src={currentProduct.image}
+                alt={currentProduct.name}
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+        </Card>
 
-                <ul className="mt-4 space-y-2 sm:space-y-3">
-                  {p.features.map((f, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 text-sm text-neutral-800 sm:gap-3"
-                    >
-                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-lg border border-neutral-200 bg-white sm:h-6 sm:w-6">
-                        {f.icon}
-                      </span>
-                      <span>{f.text}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:items-center">
-                  <Anchor href={p.link} className="w-full sm:w-auto justify-center">
-                    Learn More <FaArrowRight />
-                  </Anchor>
-                  <span className="text-center text-sm text-neutral-600 sm:text-left">
-                    {p.pricing}
-                  </span>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-        ))}
+        {/* Mobile Dots Navigation */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {products.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIndex(idx)}
+              className={`w-3 h-3 rounded-full transition ${
+                idx === activeIndex ? "bg-black" : "bg-gray-300"
+              }`}
+              aria-label={`Go to product ${idx + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </Section>
   );
