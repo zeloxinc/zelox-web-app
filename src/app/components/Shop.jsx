@@ -96,14 +96,14 @@ function Shop({ setActiveSection }) {
               </div>
             </div>
 
-            {/* Image
-            <div className="w-full lg:w-1/2 relative bg-neutral-100 overflow-hidden">
+            {/* Image — ONLY shown on large screens (lg and up) */}
+            <div className="hidden lg:block w-full lg:w-1/2 relative bg-neutral-100 overflow-hidden">
               <img
                 src={currentProduct.image}
                 alt={currentProduct.name}
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />
-            </div> */}
+            </div>
           </div>
         </Card>
 
