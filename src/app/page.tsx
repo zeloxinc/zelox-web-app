@@ -27,15 +27,15 @@ export default function HomePage() {
             <div className="min-h-screen snap-start">
               <Hero />
             </div>
-            <div className="min-h-screen snap-start">
+            <div className=" ">
               <Shop setActiveSection={setActiveSection} />
             </div>
-            <div className="min-h-screen snap-start">
+            <div className=" ">
               <About setActiveSection={setActiveSection} />
             </div>
-            <div className="min-h-h-screen snap-start">
+            {/* <div className="">
               <Testimonials setActiveSection={setActiveSection} />
-            </div>
+            </div> */}
             <Footer />
           </div>
         );
@@ -92,8 +92,10 @@ export default function HomePage() {
         }}
       />
 
-      <NavBar activeSection={activeSection} setActiveSection={setActiveSection} />
-
+<NavBar
+  activeSection={activeSection}
+  setActiveSection={setActiveSection as (id: string) => void}
+/>
       <main ref={mainRef} className="w-full">
         <div key={activeSection} className="animate-fade-in-section transition-all duration-500">
           {renderSection(activeSection)}

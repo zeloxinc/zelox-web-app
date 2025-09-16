@@ -41,7 +41,7 @@ function Shop({ setActiveSection }) {
         </div>
       </div>
 
-      {/* Product Showcase — Full width, centered */}
+      {/* Product Showcase */}
       <div className="relative max-w-7xl mx-auto px-4">
         {/* Navigation Arrows (Desktop) */}
         <button
@@ -60,11 +60,11 @@ function Shop({ setActiveSection }) {
           <FaChevronRight />
         </button>
 
-        {/* Product Card — Responsive Split Layout */}
+        {/* Product Card */}
         <Card className="overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <div className="flex flex-col lg:flex-row lg:items-center">
-            {/* Content — Left on Desktop, Top on Mobile */}
-            <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:pr-4">
+          <div className="flex flex-col lg:flex-row lg:items-stretch">
+            {/* Content */}
+            <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:pr-4 flex flex-col">
               <h3 className="text-xl sm:text-2xl font-bold mb-3">{currentProduct.name}</h3>
               <p className="text-sm text-neutral-700 leading-relaxed mb-5 sm:text-base">
                 {currentProduct.description}
@@ -81,7 +81,7 @@ function Shop({ setActiveSection }) {
                 ))}
               </ul>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                 <Anchor
                   href={currentProduct.link.trim()}
                   target="_blank"
@@ -96,18 +96,18 @@ function Shop({ setActiveSection }) {
               </div>
             </div>
 
-            {/* Image — Right on Desktop, Below on Mobile */}
-            <div className="w-full lg:w-1/2 aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:h-full relative bg-neutral-100 overflow-hidden">
+            {/* Image
+            <div className="w-full lg:w-1/2 relative bg-neutral-100 overflow-hidden">
               <img
                 src={currentProduct.image}
                 alt={currentProduct.name}
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />
-            </div>
+            </div> */}
           </div>
         </Card>
 
-        {/* Mobile Dots Navigation */}
+        {/* Mobile Dots */}
         <div className="flex justify-center mt-6 space-x-2">
           {products.map((_, idx) => (
             <button

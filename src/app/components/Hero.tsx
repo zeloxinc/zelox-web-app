@@ -36,18 +36,19 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         {/* Main heading */}
-        <div className="space-y-6 text-center">
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl text-gray-900 leading-tight">
-            <span className="lg:inline-block">ZELOX</span>
-            <span className="block lg:inline-block text-3xl sm:text-5xl lg:text-6xl text-gray-600 font-light mt-2 lg:mt-0">
-              INDUSTRIES
-            </span>
-          </h1>
+      <div className="space-y-6 text-center lg:text-center px-[5px] sm:px-6 md:px-8 lg:px-0">
+        {/* On mobile: 5px padding left/right. On sm+: more padding. On lg: no padding (centered) */}
+        <h1 className="text-5xl sm:text-9xl lg:text-8xl text-gray-900 leading-tight text-left sm:text-left lg:text-center">
+          <span className="lg:inline-block">ZELOX</span>
+          <span className="block lg:inline-block text-3xl sm:text-7xl lg:text-6xl text-gray-600 font-light mt-2 lg:mt-0">
+            INDUSTRIES
+          </span>
+        </h1>
 
-          <p className="text-xl sm:text-2xl text-gray-600 font-light max-w-2xl mx-auto text-left lg:text-center">
-            Where your future meets innovation
-          </p>
-        </div>
+        <p className="text-xl sm:text-2xl text-gray-600 font-light max-w-2xl mx-auto text-left sm:text-left lg:text-center">
+          Where your future meets innovation
+        </p>
+      </div>
 
         {/* CTA buttons — always horizontal, smaller on mobile */}
         <div className="mt-12 flex flex-row gap-4 justify-center items-center">
@@ -66,27 +67,30 @@ export default function Hero() {
         </div>
 
         {/* Stats or features — with animated counters */}
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">
+        <div className="mt-20 flex flex-row flex-nowrap justify-center items-center gap-6 sm:gap-8 px-[5px] sm:px-0 max-w-3xl mx-auto overflow-hidden">
+          {/* Stat 1: Clients */}
+          <div className="text-center flex-shrink-0">
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 whitespace-nowrap">
               {Math.floor(counted.clients)}
               {counted.clients % 1 !== 0 && counted.clients < 100 ? '.' + Math.floor((counted.clients % 1) * 10) : ''}
             </div>
-            <div className="text-sm text-gray-600">Happy Clients</div>
+            <div className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">Happy Clients</div>
           </div>
 
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">
+          {/* Stat 2: Uptime */}
+          <div className="text-center flex-shrink-0">
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 whitespace-nowrap">
               {counted.uptime.toFixed(1)}%
             </div>
-            <div className="text-sm text-gray-600">Uptime</div>
+            <div className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">Uptime</div>
           </div>
 
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-gray-900">
+          {/* Stat 3: Support */}
+          <div className="text-center flex-shrink-0">
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 whitespace-nowrap">
               {counted.support}+
             </div>
-            <div className="text-sm text-gray-600">Support</div>
+            <div className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">Support</div>
           </div>
         </div>
       </div>
