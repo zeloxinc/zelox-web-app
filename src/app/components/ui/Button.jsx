@@ -1,10 +1,10 @@
 import React from "react";
-import { motion } from "motion/react";
 
 const Button = ({ link, text, variant = "default", fullWidth = false }) => {
-  console.log(link)
   const baseClasses =
-    `font-hubot inline-flex items-center justify-center px-4 py-2 rounded-md transition-all ease-in-out duration-300 text-base font-medium ${fullWidth ? "w-full" : ""}`;
+    `font-hubot inline-flex items-center justify-center px-4 py-2 rounded-md 
+     text-base font-medium transition-transform duration-200 ease-in-out 
+     ${fullWidth ? "w-full" : ""}`;
 
   const variants = {
     default:
@@ -14,18 +14,16 @@ const Button = ({ link, text, variant = "default", fullWidth = false }) => {
   };
 
   const classes = `${baseClasses} ${variants[variant] || variants.default}`;
-  const MotionTag = motion[link ? "a" : "button"];
+
+  const Tag = link ? "a" : "button";
 
   return (
-    <MotionTag
+    <Tag
       href={link || undefined}
-      className={classes}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 300 }}
+      className={`${classes} hover:scale-105 active:scale-95`}
     >
       {text}
-    </MotionTag>
+    </Tag>
   );
 };
 
